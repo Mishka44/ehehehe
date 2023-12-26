@@ -26,7 +26,10 @@ struct Data {
 	int id;
 	int matrix[1000][5];
 };
-void Print(std::unique_ptr<Data> &obj){ }
+void Print(std::unique_ptr<Data> &obj){
+	obj->id;
+	obj->matrix;
+}
 
 void ptr_ex() {
 	//Data obj;
@@ -34,9 +37,23 @@ void ptr_ex() {
 	std::unique_ptr<Data> p_uniq = std::make_unique<Data>();
 	// в make_unique можно принимать любые наборы данных, под которые есть конструктору у типа шаблона
 	//
-	Print(p_uniq);//передача p_uniq по параметру невозсожна, так как нет конструктора копирования 
+	Print(p_uniq);//передача p_uniq по параметру невозможна, так как нет конструктора копирования 
 	// передача по ссылке правил работы такого указателя не нарушает
 	auto p_shrd = std::make_shared<Data>();
 	
 
 }
+
+template <typename Type>
+class smart_pointer {
+public:
+	Type& operator*() {
+		return *data;
+	}
+	const Type& operator*() const{
+		return *data;
+	}
+
+private:
+	Type* data_;
+};

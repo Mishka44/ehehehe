@@ -69,15 +69,15 @@ public:
 class Librarian {
 public:
 	//InterFace for внешнего использования
-	~Librarian() {
+	/*~Librarian() {
 		for (auto& i : dItem) {
 			if (i) {
 				delete i;
 			}
 		}
-	}
+	}*/
 private:
-	std::vector</*std::shared_ptr<Item> */Item*> dItem;
+	std::vector<std::shared_ptr<Item>> dItem;
 	std::vector<CollectedItem> cItem;
 };
 
